@@ -7,7 +7,6 @@ from twisted.python import log
 #
 ##############################################################################
 app = Flask(__name__)
-app.secret_key = '\xc5l\xf8C\xeb\xa3\xb9\x15\x01)Gc!`J"\xbe\xa0l\xa3\xfam\x1ar'
 ##############################################################################
 #
 JINJA_PATH = '../static/html'
@@ -18,19 +17,17 @@ env = Environment(loader=FileSystemLoader(JINJA_PATH),extensions=JINJA_EXTS)
 #
 def render_template(template,dictionary,nocache=False):
     """ render a template and dictionary into a response """
-    #try:
-    response = make_response(env.get_template(template).render(dictionary))
-    if nocache:
-        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-        response.headers['Pragma'] = 'no-cache'
-        response.headers['Expires'] = '0'
+    try:
+        response = make_response(env.get_template(template).render(dictionary))
+        if nocache:
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+            response.headers['Pragma'] = 'no-cache'
+            response.headers['Expires'] = '0'
+        return response
+    except:
+        log.err()
 
-    log.msg("Response")
-    log.msg(response)
-    return response
-    #except:
-    #    log.err()
-    #return 'Fatal Server Error',500
+    return 'Fatal Server Error',500
 #
 @app.route('/',methods=['GET'])
 def index():
@@ -66,7 +63,6 @@ def wsgi_favicon():
 def wsgi_html(path):
     """ return the favicon image """
     return render_template(path,{},nocache=True)
-    #return send_from_directory('../static/html',path)
 #
 @app.route('/ionman/<path:path>',methods=['GET'])
 def wsgi_ionman(path):
