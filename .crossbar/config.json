@@ -1,0 +1,54 @@
+{
+  "controller": {},
+  "workers": [{
+      "type": "router",
+      "options": { "pythonpath": [ "../ionman" ] },
+      "realms": [{
+          "name": "ionman",
+          "roles": [{
+              "name": "anonymous",
+              "permissions": [{ "uri": "*", "publish": true, "subscribe": true, "call": true, "register": true }]
+            },
+            { "name": "client", "authorizer": "ionman.security.authorize" },
+            { "name": "authenticator", "permissions": [
+              { "uri": "ionman.security.authenticate","register": true },
+              { "uri": "ionman.security.authorize","register": true },
+              { "uri": "*","subscribe": true }
+            ] },
+            { "name": "server",
+              "permissions": [
+                { "uri": "*", "publish": true, "subscribe": true, "call": true, "register": true },
+                { "uri": "wamp.metaevent.session.*", "subscribe": true }
+              ]
+            }]
+        }],
+      "transports": [{
+          "type": "web",
+          "endpoint": {
+            "type": "tcp",
+            "port": 8443,
+            "tls": {
+              "key" : "server_key.pem",
+              "certificate" : "server_cert.pem"
+            }
+          },
+          "options" : { "access_log": true },
+          "paths": {
+            "/": { "type": "wsgi", "module" : "wsgi", "object" : "app" },
+            "ws": { "type": "websocket" , "debug": true,
+              "auth": {"wampcra": {"type": "dynamic","authenticator":"ionman.security.authenticate"}},
+              "options": {
+                "enable_webstatus": false,
+                "open_handshake_timeout": 5000,
+                "close_handshake_timeout": 1000,
+                "auto_ping_interval": 10000,
+                "auto_ping_timeout": 5000,
+                "auto_ping_size": 32,
+                "fail_by_drop": true
+              }
+            }
+          }
+        }],
+      "components": [{ "type": "class", "classname": "ionman.ionman", "realm": "ionman", "role": "authenticator" }]
+    }]
+}
