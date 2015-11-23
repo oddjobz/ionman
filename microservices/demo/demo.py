@@ -57,7 +57,6 @@ class Registrations:
                 'authid'    : user.get('authid',''),
                 'uri'       : page
             }
-            log.msg(my_dict)
             return { 'html':tmpl.render(my_dict) }
         except:
             log.err()

@@ -110,8 +110,10 @@ ionman = {
 		ionman.session = session;
         $("#login").fadeOut(300);
         $("body").removeClass("no-scroll");
-        $('#button-signout').show();
-        $('#button-signin').hide();
+        if( ionman.credentials.authid != 'guest' ) {
+            $('#button-signout').show();
+            $('#button-signin').hide();
+        }
 		ionman.load('demo.page.render','main-content','welcome.j2.html');
 	},
 

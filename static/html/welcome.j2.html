@@ -1,9 +1,15 @@
-    <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
           <h1>Welcome</h1>
         <h5>Hello {{authid}}</h5>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p>This is template is taken directly from the Bootstrap examples, just as an example of what can be shown on a web page. The
+            real demonstration is the framework behind the page, not that one ach page transition (when you click on the green button)
+            the page itself is not refreshed, but a "part" of the page IS. That leaves all your CSS/JS (and websockets) in place over
+            transitions which makes it MUCH faster than loading a new page .. AND much smoother.
+          </p>
+          <p>Note also that each page is a JINJA2 template as you would find served up by Flask (although the page is actually
+          being served over a websocket, this template formatting is also used by Ansible ..</p>
+
         <p><a class="btn btn-primary btn-lg" href="javascript:ionman.load('demo.page.render','main-content','page1.j2.html')" role="button">Page 1 &raquo;</a></p>
       </div>
     </div>
