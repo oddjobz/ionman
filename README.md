@@ -75,3 +75,12 @@ You should see crossbar register the login (in your first window) with something
 ```
 Now you should be ready to roll, crossbar should be serving pages on port 8443 using https, so if you point your browser at https://localhost:8443/ you should see the front page.
 ![Screenshot of welcome page](https://github.com/oddjobz/ionman/blob/master/contrib/demo.png)
+
+###The extra mile ...
+
+To run this on a server with automatic starts, firstly you will need to make Crossbar run automatically, I would recommend using 'svs' which is well documented on the Crossbar site. The services ends up being started via rc.local using *svscanboot*, this sounds a little hacky but it works well.
+
+To start microservices, you will need a startup script for each, jus the one in this instance. There is a demonstration script in the contrib folder which should work with minimal modification for most users. (it just depends on where in your filesystem you want to load the code) Essentially it runs the 'server.py' code from the microservice using "twistd", which is the standard launcher for "twisted" applications. (which is what Crossbar 'sits' on) If you run a microservice with "foreground" after it, then you get the easy-to-read debug, if you drop the 'foreground' then it expects to be run via 'twistd', which handles loggind, pid files etc etc ..
+(and the sample start/stop calls twistd for you)
+
+Note; you.do.not.need.a.web.server. Crossbar *is* a webserver, and yes, generally it IS fast enough in Python! :)
