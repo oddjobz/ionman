@@ -3,6 +3,8 @@ This is a demonstration of how Crossbar can be used as a web development framewo
 
 After loading the initial page, JS/CSS/Websockets are all persistent across further page transitions, you will note how quickly page transitions happen and how smooth the UI update is. A page transition happens over an OPEN websocket connection!!
 
+![Screenshot of welcome page](https://github.com/oddjobz/ionman/blob/master/contrib/demo.png)
+
 ###Anatomy of the framework
 
 Crossbar inherrently lends itself to microservices based development, which is the vein in which this example is intended. There are three main components here;
@@ -74,8 +76,6 @@ You should see crossbar register the login (in your first window) with something
 2015-11-23T11:36:13+0000 [Router      30666] 1266989505295769> Join (demo) as (server)
 ```
 Now you should be ready to roll, crossbar should be serving pages on port 8443 using https, so if you point your browser at https://localhost:8443/ you should see the front page. Initially you will see "Sign In" in the top right hand corner and each page will welcome you as "guest". If you click on the "Sign In" button and sign in as "user@user" password "user", this will change.
-
-![Screenshot of welcome page](https://github.com/oddjobz/ionman/blob/master/contrib/demo.png)
 
 ###The extra mile ...
 
