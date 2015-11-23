@@ -73,7 +73,7 @@ You should see crossbar register the login (in your first window) with something
 2015-11-23T11:36:13+0000 [Router      30666] onAuthenticate: X8Lda5BvxUjf3ZJ+zUVj6O9WXy626XvIz7Y9pQO14vE= {}
 2015-11-23T11:36:13+0000 [Router      30666] 1266989505295769> Join (demo) as (server)
 ```
-Now you should be ready to roll, crossbar should be serving pages on port 8443 using https, so if you point your browser at https://localhost:8443/ you should see the front page.
+Now you should be ready to roll, crossbar should be serving pages on port 8443 using https, so if you point your browser at https://localhost:8443/ you should see the front page. Initially you will see "Sign In" in the top right hand corner and each page will welcome you as "guest". If you click on the "Sign In" button and sign in as "user@user" password "user", this will change.
 
 ![Screenshot of welcome page](https://github.com/oddjobz/ionman/blob/master/contrib/demo.png)
 
