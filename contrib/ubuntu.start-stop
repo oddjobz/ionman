@@ -23,10 +23,10 @@ DESC="Demo Crossbar service"
 LOGFILE=/var/log/crossbar/demo.log
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 SERVICE_NAME=demo
-SERVICE_DIR=/home/ionman/demo
+SERVICE_DIR=/home/ionman/microservices/demo
 PIDFILE=/var/run/demo.pid
 
-DAEMON_OPTS="-d $SERVICE_DIR -- --pidfile=$PIDFILE -y /home/ionman/demo/server.py"
+DAEMON_OPTS="-d $SERVICE_DIR -- --pidfile=$PIDFILE -y /home/ionman/microservices/demo/server.py"
 DAEMON=/usr/local/bin/twistd
 
 export PYTHONPATH=$SERVICE_DIR
