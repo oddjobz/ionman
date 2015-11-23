@@ -74,4 +74,4 @@ You should see crossbar register the login (in your first window) with something
 2015-11-23T11:36:13+0000 [Router      30666] 1266989505295769> Join (demo) as (server)
 ```
 Now you should be ready to roll, crossbar should be serving pages on port 8443 using https, so if you point your browser at https://localhost:8443/ you should see the front page.
-
+![Screenshot of welcome page](https://github.com/oddjobz/ionman/blob/master/contrib/demo.png)
