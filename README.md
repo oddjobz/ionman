@@ -5,6 +5,8 @@ After loading the initial page, JS/CSS/Websockets are all persistent across furt
 
 ![Screenshot of welcome page](https://github.com/oddjobz/ionman/blob/master/contrib/demo.png)
 
+The DEMO site is currently available [Here](https://crossbardemo.linux.uk:8443)
+
 ###Anatomy of the framework
 
 Crossbar inherrently lends itself to microservices based development, which is the vein in which this example is intended. There are three main components here;
