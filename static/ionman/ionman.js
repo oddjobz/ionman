@@ -92,12 +92,20 @@ ionman = {
 		ionman.connection.open();
 	},
 
+	connection_login: function() {
+        if( ionman.credentials.authid != 'guest' ) {
+            $('#button-signout').show();
+            $('#button-signin').hide();
+        }
+		ionman.load('demo.page.render','main-content','welcome.j2.html');
+	},
+
 	connection_open: function(session,details) {
 		ionman.debug('open','Session opened');
 		nss.sessionStorage.set('authid',ionman.credentials.authid);
         nss.sessionStorage.set('password',ionman.credentials.password);
 		ionman.session = session;
-		ionman.load('demo.page.render','main-content','welcome.j2.html');
+		ionman.connection_login();
 	},
 
 	connection_open_replace: function(session,details) {
@@ -110,11 +118,7 @@ ionman = {
 		ionman.session = session;
         $("#login").fadeOut(300);
         $("body").removeClass("no-scroll");
-        if( ionman.credentials.authid != 'guest' ) {
-            $('#button-signout').show();
-            $('#button-signin').hide();
-        }
-		ionman.load('demo.page.render','main-content','welcome.j2.html');
+		ionman.connection_login();
 	},
 
 	connection_close: function(reason,details) {

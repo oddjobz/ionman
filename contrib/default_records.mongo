@@ -1,0 +1,22 @@
+use ionman;
+db.users.update({'authid':'user@user'},{$set:{
+    "authid" : "user@user",
+    "digest" : "ee11cbb19052e40b07aac0ca060c23ee",
+    "role" : "client",
+    "name" : "This is the guest (anonymous) user account"
+}},{'upsert':true});
+
+db.users.update({'authid':'demo'},{
+    "authid" : "demo",
+    "digest" : "fe01ce2a7fbac8fafaed7c982a04e229",
+    "role" : "server",
+    "name" : "demo server"
+},{'upsert':true});
+
+db.users.update({'authid':'guest'},{
+    "authid" : "guest",
+    "digest" : "084e0343a0486ff05530df6c705c8bb4",
+    "role" : "client",
+    "name" : "This is the guest (anonymous) user account"
+},{'upsert':true});
+
