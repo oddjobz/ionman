@@ -1,19 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>Standard Template</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/local.css" rel="stylesheet">
 </head>
 <body>
-<div>
-    Header - this part of the page is persistent over page transitions
-</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">IONMAN Development Framework</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right">
+                <a href="javascript:do_login()" id="button-signin">
+                    <button type="button" class="btn btn-success">Sign In</button>
+                </a>
+                <a href="javascript:ionman.reset()" id="button-signout">
+                    <button type="button" class="btn btn-success">Sign Out</button>
+                </a>
+            </form>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
 
 <div id="main-content">
+
 </div>
 
-<div>
-    Footer - this part of the page is persistent over page transitions
-</div>
+<footer>
+    <div class="footer"><BR/>&copy; Encryptec Ltd - 2015</div>
+</footer>
+
+{% include "login.j2.html" %}
+
+<!-- jQuery framework -->
+<script src="js/jquery-2.1.4.min.js"></script>
+<!-- jQuery Cookie Support -->
+<script src="js/jquery.cookie.js"></script>
+<!-- jQuery plugin for local storage -->
+<script src="js/jquery.storageapi.min.js"></script>
+<!-- jQuery MD5 support -->
+<script src="js/jQuery.md5.js"></script>
+<!-- Bootstrap support -->
+<script src="js/bootstrap.min.js"></script>
+<!-- AutoBahn Websockers -->
+<script src="js/autobahn.min.js"></script>
+<!-- ionman WebSockets Layer -->
+<script src="ionman/ionman.js"></script>
+
 </body>
 </html>
+<script>
+$(document).ready(function(){
+
+    do_login = function() {
+        console.log("login");
+        $("#login").fadeIn(300);
+        $("body").addClass("no-scroll");
+    };
+    $("#login .close").click(function () {
+        $("#login").fadeOut(300);
+        $("body").removeClass("no-scroll");
+    });
+    $('#button-signout').hide();
+    nss=$.initNamespaceStorage('ionman');
+	ionman.init();
+});
+</script>

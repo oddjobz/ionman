@@ -21,7 +21,7 @@ class Registrations:
         self.conf = conf
         self.extra = extra
         self.mongo = MongoClient()
-        self.env = Environment(loader=FileSystemLoader('../static/html'),extensions=["jinja2.ext.do",])
+        self.env = Environment(loader=FileSystemLoader('../../static/html'),extensions=["jinja2.ext.do",])
     #
     #   Ok, we need this to resolve sessions back to authid's
     #   Hopefully when we get passed authid's , this will get easier
@@ -47,13 +47,18 @@ class Registrations:
     @wamp.register(u'demo.page.render')
     def app_load_preferences(self,params,details):
         """ load up a requested page """
-        user = self.getSession(details)
-        page = params.get('uri','index.html');
-        tmpl = self.env.get_template(page)
-        my_dict = {
-            'name'      : user.get('name',''),
-            'role'      : user.get('role',''),
-            'authid'    : user.get('authid',''),
-            'uri'       : page
-        }
-        return { 'html':tmpl.render(my_dict) }
+        try:
+            user = self.getSession(details)
+            page = params.get('uri','welcome.html');
+            tmpl = self.env.get_template(page)
+            my_dict = {
+                'name'      : user.get('name',''),
+                'role'      : user.get('role',''),
+                'authid'    : user.get('authid',''),
+                'uri'       : page
+            }
+            log.msg(my_dict)
+            return { 'html':tmpl.render(my_dict) }
+        except:
+            log.err()
+            return { 'html':'' }
