@@ -69,7 +69,7 @@ class ServerComponent(ApplicationSession):
         if challenge.method != u"wampcra":
             raise Exception("no authmethod {}".format(challenge.method))
 
-        extra = challenge.extra['challenge']
+        extra = challenge.extra['challenge'].encode("ascii")
         signature = auth.compute_wcs(conf.PASS,extra)
         return signature.decode('ascii')
 
