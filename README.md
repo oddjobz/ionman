@@ -85,3 +85,26 @@ To start microservices, you will need a startup script for each, jus the one in 
 (and the sample start/stop calls twistd for you)
 
 Note; you.do.not.need.a.web.server. Crossbar *is* a webserver, and yes, generally it IS fast enough in Python! :)
+
+This should get you a complete set of dependencis (Ubuntu 15.10);
+```bash
+echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" > /etc/apt/sources.list.d/mongodb-org-3.0.list 
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+apt-get update
+useradd -m ionman
+apt-get install git csh daemontools daemontools-run
+apt-get install apt-get install build-essential libssl-dev python-pip pypy pypy-dev
+apt-get install build-essential libssl-dev python-pip pypy pypy-dev libffi-dev
+apt-get install python-pip python-dev mongodb-org python-pymongo
+pip2 install crossbar
+git clone https://github.com/oddjobz/ionman.git
+mkdir /var/log/crossbar/
+chown ionman:ionman /var/log/crossbar
+```
+And you may want to add;
+```python
+import sys
+sys.setdefaultencoding('utf-8')
+```
+To beginning of; /usr/lib/python2.7/sitecustomize.py
+
