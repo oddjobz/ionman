@@ -110,3 +110,6 @@ sys.setdefaultencoding('utf-8')
 ```
 To beginning of; /usr/lib/python2.7/sitecustomize.py
 
+## In action ...
+
+If you want to see this code in used in anger, take a look at the [Screencasts](https://www.youtube.com/playlist?list=PLfBDJ93lnsyJQisOC4LWKw9s12p-j5lJ5) becoming available on YouTube of a product based on this code.
